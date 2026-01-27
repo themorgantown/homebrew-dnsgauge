@@ -17,8 +17,7 @@ A command-line tool to benchmark DNS servers and DNS-over-HTTPS (DoH) endpoints.
 | Google | DoH | https://dns.google/dns-query | 60 | 42 | 126 | 100% | 0 |
 | Mullvad | DoH | https://dns.mullvad.net/dns-query | 60 | 29 | 116 | 100% | 0 |
 
-
-
+These results give you an idea about which DNS server is the best for you based on response times. The tool places the best performing servers at the top of the list.
 
 ## Features
 
@@ -26,6 +25,9 @@ A command-line tool to benchmark DNS servers and DNS-over-HTTPS (DoH) endpoints.
 - **Default providers**: Cloudflare, NextDNS, Quad9, Mullvad (both UDP and DoH endpoints)
 - **Live status updates**: Progress, average latency, and ETA while running
 - **Results table**: Sorted by latency and success rate
+- **Simulates Keep-Alive**: Reuses connections for DoH queries to reduce latency. Most routers support this feature.
+- **Customizable**: Add your own servers and domains
+
 
 ## Quick Start
 
@@ -192,14 +194,6 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Or if using the built app, ensure it was built with all dependencies:
-```bash
-bash build_app.sh
-```
-
-### GUI freezes during test
-
-This is normal; the GUI updates every 100ms. Wait for "Completed" status.
 
 ### DoH timeouts
 
