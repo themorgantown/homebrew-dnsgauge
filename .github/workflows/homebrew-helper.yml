@@ -1,0 +1,34 @@
+name: Calculate Release SHA256
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  get-sha256:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Source Tarball
+        run: |
+          VERSION=${{ github.event.release.tag_name }}
+          URL="https://github.com/${{ github.repository }}/archive/refs/tags/${VERSION}.tar.gz"
+          echo "Downloading $URL..."
+          wget -O source.tar.gz "$URL"
+
+      - name: Calculate SHA256
+        id: sha
+        run: |
+          HASH=$(sha256sum source.tar.gz | cut -d ' ' -f 1)
+          echo "SHA256=$HASH" >> $GITHUB_OUTPUT
+          echo "::notice title=Release SHA256::SHA256 Hash for $VERSION: $HASH"
+          echo "----------------------------------------"
+          echo "SHA256 Hash for Homebrew Formula:"
+          echo "$HASH"
+          echo "----------------------------------------"
+
+      - name: Print Instructions
+        run: |
+          echo "Copy the SHA256 hash above and update Formula/dns-latency-cli.rb"

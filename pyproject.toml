@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dns-latency-cli"
+version = "1.0.0"
+description = "DNS response tester (UDP + DoH) with live status and ETA"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+    "httpx[http2]>=0.24.0",
+    "dnspython>=2.3.0",
+]
+
+[project.scripts]
+dnstest = "dnstest:main"
+
+[project.urls]
+Homepage = "https://github.com/themorgantown/DNS-Latency-CLI"
+
+[tool.setuptools]
+py-modules = ["dnstest"]
+
+[tool.setuptools.package-dir]
+"" = "src"
