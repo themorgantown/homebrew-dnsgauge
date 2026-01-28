@@ -10,7 +10,7 @@ class Dnsgauge < Formula
   def install
     # Install the package into the prefix
     # We use --prefix=#{prefix} to ensure it goes into the Homebrew cell
-    system "python3", "-m", "pip", "install", "--no-deps", "--prefix=#{prefix}", "."
+    system "python3", "-m", "pip", "install", "--prefix=#{prefix}", "."
 
     # The executable 'dnstest' will be created in bin/ by pip due to pyproject.toml
   end
