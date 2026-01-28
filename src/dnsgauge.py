@@ -242,7 +242,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--version",
         action="version",
-        version="dnsgauge 1.0.0",
+        version="dnsgauge 1.1.0",
     )
     parser.add_argument(
         "-dohnly",
