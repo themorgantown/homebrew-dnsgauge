@@ -31,4 +31,4 @@ jobs:
 
       - name: Print Instructions
         run: |
-          echo "Copy the SHA256 hash above and update Formula/dns-latency-cli.rb"
+          echo "Copy the SHA256 hash above and update Formula/dnsgauge.rb"

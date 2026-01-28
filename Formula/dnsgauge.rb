@@ -2,7 +2,7 @@ class Dnsgauge < Formula
   desc "DNS response testing tool (UDP + DoH) with live status and ETA"
   homepage "https://github.com/themorgantown/homebrew-dnsgauge"
   url "https://github.com/themorgantown/homebrew-dnsgauge/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "5bba0b8467ed323d2661bf2ef1cf2e29c56c6ab2b7cb79fe95efa03f9f8c5da4"  # Calculate after creating the tarball
+  sha256 "84cc389b3b039c04c272d98ef5eae950c1228439396cb2ddde10a7eabc171db4"  # Calculate after creating the tarball
   license "MIT"
 
   depends_on "python@3.11"

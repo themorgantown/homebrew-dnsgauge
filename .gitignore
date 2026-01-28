@@ -6,3 +6,5 @@ src/dnsgauge.egg-info/entry_points.txt
 src/dnsgauge.egg-info/top_level.txt
 src/dnsgauge.egg-info/SOURCES.txt
 src/dnsgauge.egg-info/PKG-INFO
+*.tar.gz
+**/*.tar.gz
