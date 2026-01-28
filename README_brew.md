@@ -17,7 +17,7 @@ To install **DNSgauge** via our tap:
 
 ```bash
 # 1. Add the tap
-brew tap themorgantown/dns-latency-cli
+brew tap themorgantown/dnsgauge
 
 # 2. Install the tool
 brew install dnsgauge
@@ -49,7 +49,7 @@ Homebrew needs a stable tarball and a matching SHA256 checksum to verify the dow
 1. **Calculate the SHA256:**
    You can find this in your GitHub Actions logs after pushing a tag, or do it manually:
    ```bash
-   curl -L -o v1.0.0.tar.gz https://github.com/themorgantown/DNS-Latency-CLI/archive/refs/tags/v1.0.0.tar.gz
+   curl -L -o v1.0.0.tar.gz https://github.com/themorgantown/homebrew-dnsgauge/archive/refs/tags/v1.0.0.tar.gz
    shasum -a 256 v1.0.0.tar.gz
    ```
 
@@ -77,7 +77,7 @@ brew audit --formula local/test/dnsgauge
 
 ## 💡 Pro-Tips for Maintainers
 
-- **Naming Matters**: Your tap repository must be named `homebrew-dns-latency-cli`. Homebrew looks for the `homebrew-` prefix automatically.
+- **Naming Matters**: Your tap repository must be named `homebrew-dnsgauge`. Homebrew looks for the `homebrew-` prefix automatically.
 - **Keep it Clean**: Ensure `dnsgauge.py` is executable and includes a proper shebang (`#!/usr/bin/env python3`).
 - **Automation**: We've included a GitHub Action in `.github/workflows/homebrew-helper.yml` that handles the checksum calculation for you every time you publish a release!
 

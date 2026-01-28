@@ -75,7 +75,7 @@ dnsgauge --udp 8.8.8.8 --doh https://dns.google/dns-query
 
 ### Method 1: Installing via Homebrew (Recommended)
 ```bash
-brew tap themorgantown/dns-latency-cli
+brew tap themorgantown/dnsgauge
 brew install dnsgauge
 ```
 

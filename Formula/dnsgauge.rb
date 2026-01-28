@@ -1,8 +1,8 @@
 class Dnsgauge < Formula
   desc "DNS response testing tool (UDP + DoH) with live status and ETA"
-  homepage "https://github.com/themorgantown/DNS-Latency-CLI"
-  url "https://github.com/themorgantown/DNS-Latency-CLI/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "3b0e0d96f73d6b3a5e2f9e4b847350ff9a1550710a0069b073dd09f1fd04ef05"  # Calculate after creating the tarball
+  homepage "https://github.com/themorgantown/homebrew-dnsgauge"
+  url "https://github.com/themorgantown/homebrew-dnsgauge/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "5bba0b8467ed323d2661bf2ef1cf2e29c56c6ab2b7cb79fe95efa03f9f8c5da4"  # Calculate after creating the tarball
   license "MIT"
 
   depends_on "python@3.11"
