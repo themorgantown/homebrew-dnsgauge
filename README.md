@@ -19,6 +19,19 @@ A command-line tool to benchmark DNS servers and DNS-over-HTTPS (DoH) endpoints.
 
 These results give you an idea about which DNS server is the best for you based on response times. The tool places the best performing servers at the top of the list.
 
+## Installation
+
+### Homebrew (Recommended). This command will install and run the latest version: 
+```bash
+brew tap themorgantown/dnsgauge
+brew install dnsgauge
+dnsgauge
+```
+
+### pip
+```bash
+pip install .
+```
 ## Features
 
 - **Dual protocol support**: UDP (port 53) and DNS-over-HTTPS (DoH)
@@ -46,7 +59,7 @@ Modern DNS has evolved. Simple UDP latency is no longer the whole picture.
 
 ## Quick Start
 
-### Usage
+## Usage
 
 ```bash
 # Run default test (UDP + DoH, 10 random domains)
@@ -72,18 +85,6 @@ dnsgauge --udp 8.8.8.8 --doh https://dns.google/dns-query
 
 - Python 3.8+ (macOS, Linux, or Windows)
 - pip or conda
-
-### Method 1: Installing via Homebrew (Recommended)
-```bash
-brew tap themorgantown/dnsgauge
-brew install dnsgauge
-```
-
-### Method 2: Installing via pip
-```bash
-# Install required packages
-pip install .
-```
 
 ### Files
 
