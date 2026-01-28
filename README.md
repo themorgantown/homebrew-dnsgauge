@@ -1,10 +1,10 @@
-# DNSgauge 🍺
+# DNSgauge
 
 A command-line tool to benchmark DNS servers and DNS-over-HTTPS (DoH) endpoints. Tests default providers (Cloudflare, NextDNS, Quad9, Mullvad) or custom servers, measuring latency, stability, and success rates across multiple domains.
 
 Results are displayed in a weighted performance table, helping you find the absolute best resolver for your network.
 
-## 🚀 Installation
+## Installation
 
 ### Homebrew (Recommended)
 ```bash
@@ -17,7 +17,7 @@ brew install dnsgauge
 pip install .
 ```
 
-## ✨ Features
+## Features
 
 - **Dual protocol support**: UDP (port 53) and DNS-over-HTTPS (DoH).
 - **Modern Defaults**: Includes Cloudflare, Google, NextDNS, Quad9, Mullvad, AdGuard, OpenDNS, and LibreDNS.
@@ -28,7 +28,7 @@ pip install .
   - **Warm Mode**: Run multiple passes and ignore the first one to test cached performance.
   - **Comprehensive Mode**: Drill down into NXDOMAIN, SERVFAIL, and transport-layer details.
 
-## 📖 Usage
+## Usage
 
 ```bash
 # Basic run (10 domains, default providers)
@@ -66,7 +66,7 @@ dnsgauge --udp 8.8.8.8 --doh https://dns.nextdns.io
 | `--timeout S` | Timeout per query in seconds (default: 2.5) |
 | `--seed N` | Random seed for domain selection |
 
-## 📊 Metrics Reference
+## Metrics Reference
 
 ### Summary Table
 - **Score**: Weighted quality metric (0-100). Higher is better.
@@ -85,7 +85,7 @@ dnsgauge --udp 8.8.8.8 --doh https://dns.nextdns.io
 - **RespKB_p95**: 95th percentile response size in Kilobytes.
 - **Reuse~**: Estimated percentage of TCP/H2 connection reuse.
 
-## 🛠 Development
+## Development
 
 ### Core Structure
 - **src/dnsgauge.py**: Main engine containing CLI parsing, metrics math, and query logic.
@@ -100,5 +100,5 @@ DEFAULT_SERVERS: List[ServerTarget] = [
 ]
 ```
 
-## 📜 License
+## License
 MIT License. See `pyproject.toml` for details.
