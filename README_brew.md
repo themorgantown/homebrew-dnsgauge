@@ -35,7 +35,7 @@ dnsgauge --help
 Turning this Python tool into a "brewable" package involves two repositories and a bit of Ruby.
 
 ### Step 1: Finalize the Release
-Ensure your code is ready and the version is bumped in `pyproject.toml`.
+Ensure your code is ready and the version is bumped in `pyproject.toml` and `version="dnsgauge 1.0.0"` in the .py file. 
 
 ```bash
 # Tag the version
