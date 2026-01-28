@@ -69,6 +69,6 @@ class Dnsgauge < Formula
   end
 
   test do
-    system "#{bin}/dnsgauge", "--help"
+    system bin/"dnsgauge", "--help"
   end
 end
