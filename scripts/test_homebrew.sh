@@ -27,8 +27,8 @@ cp Formula/dnsgauge.rb "$TAP_REPO/Formula/"
 
 # 3. Test installation
 echo "🚀 Testing installation..."
-# Uninstall first if already installed from this tap to ensure a clean slate
-brew uninstall local/test/dnsgauge 2>/dev/null || true
+# Uninstall first if already installed (from any tap) to ensure a clean slate
+brew uninstall dnsgauge 2>/dev/null || true
 brew install local/test/dnsgauge
 
 # 4. Run basic test defined in the formula

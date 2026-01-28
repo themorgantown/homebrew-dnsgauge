@@ -83,5 +83,27 @@ brew audit --formula local/test/dnsgauge
 
 ---
 
+## 🔄 Updating Dependencies
+
+Managing Python dependencies in Homebrew requires keeping the `resource` blocks in sync with your `pyproject.toml`.
+
+### Automated with Dependabot
+We've included a `.github/dependabot.yml` which will alert you when `pip` dependencies are outdated. 
+
+### Syncing with Homebrew
+After updating dependencies in `pyproject.toml`, you must refresh the Homebrew formula:
+
+```bash
+# Run the helper script
+./scripts/update_resources.sh
+```
+
+This script will:
+1. Sync your formula to a local testing tap.
+2. Fetch the latest Shasums for all sub-dependencies from PyPI.
+3. Update the `resource` blocks in `Formula/dnsgauge.rb` automatically.
+
+---
+
 ### Credits & Inspiration
 Inspired by the "Brew It Yourself" guide by Evren Tan. We've taken those principles to make **DNSgauge** a first-class citizen in the Homebrew ecosystem.
