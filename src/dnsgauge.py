@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-DNS response tester (UDP + DoH) with live status + ETA.
+DNSgauge: DNS response tester (UDP + DoH) with live status + ETA.
 
 Examples:
-  python3 dnstest.py
-  python3 dnstest.py -dohnly
-  python3 dnstest.py --udp 8.8.8.8 --doh https://dns.google/dns-query
+  dnsgauge
+  dnsgauge -dohnly
+  dnsgauge --udp 8.8.8.8 --doh https://dns.google/dns-query
 """
 
 from __future__ import annotations
@@ -22,6 +22,7 @@ from typing import Callable, Iterable, List, Tuple
 import dns.message
 import dns.query
 import dns.rdatatype
+import dns.resolver
 
 
 DEFAULT_DOMAINS = [
@@ -53,8 +54,6 @@ DEFAULT_SERVERS: List[ServerTarget] = [
     # Quad9 - recommended and alternate DoH endpoints
     ServerTarget("Quad9", "UDP", "9.9.9.9"),
     ServerTarget("Quad9", "DoH", "https://dns.quad9.net/dns-query"),
-    ServerTarget("Quad9-secure", "DoH", "https://dns9.quad9.net/dns-query"),
-    ServerTarget("Quad9-unsecure", "DoH", "https://dns10.quad9.net/dns-query"),
     ServerTarget("Quad9-ECS", "DoH", "https://dns11.quad9.net/dns-query"),
     # Mullvad
     ServerTarget("Mullvad", "UDP", "194.242.2.2"),
@@ -206,10 +205,42 @@ def make_table(headers: List[str], rows: List[List[str]]) -> str:
     return "\n".join(lines)
 
 
+def get_system_resolvers() -> List[str]:
+    """Retrieve system-configured DNS resolvers."""
+    try:
+        resolver = dns.resolver.get_default_resolver()
+        return list(resolver.nameservers)
+    except Exception:
+        return []
+
+
 def build_servers(udp_list: List[str], doh_list: List[str], doh_only: bool) -> List[ServerTarget]:
-    servers = list(DEFAULT_SERVERS)
-    servers.extend(ServerTarget("Custom", "UDP", ip) for ip in udp_list)
-    servers.extend(ServerTarget("Custom", "DoH", url) for url in doh_list)
+    system_ips = get_system_resolvers()
+    servers: List[ServerTarget] = []
+
+    # Process default servers and mark if they match system resolvers
+    for s in DEFAULT_SERVERS:
+        provider = s.provider
+        if s.protocol == "UDP" and s.endpoint in system_ips:
+            provider = f"{provider} (current)"
+        servers.append(ServerTarget(provider, s.protocol, s.endpoint))
+    
+    # Add system resolvers if not already covered
+    if not doh_only:
+        for ip in system_ips:
+            if not any(s.endpoint == ip for s in servers):
+                servers.append(ServerTarget("System (selected)", "UDP", ip))
+
+    # Add custom servers and mark if they match system resolvers
+    for ip in udp_list:
+        provider = "Custom"
+        if ip in system_ips:
+            provider = f"{provider} (current)"
+        servers.append(ServerTarget(provider, "UDP", ip))
+
+    for url in doh_list:
+        servers.append(ServerTarget("Custom", "DoH", url))
+
     if doh_only:
         servers = [s for s in servers if s.protocol == "DoH"]
     return servers
@@ -366,3 +397,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

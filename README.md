@@ -51,19 +51,19 @@ Modern DNS has evolved. Simple UDP latency is no longer the whole picture.
 ```bash
 # Run default test (UDP + DoH, 10 random domains)
 # Note: Keep-Alive (connection reuse) is ENABLED by default for DoH
-python3 src/dnstest.py
+dnsgauge
 
 # DoH only
-python3 src/dnstest.py -dohnly
+dnsgauge -dohnly
 
 # Disable Keep-Alive (force new connection per query)
-python3 src/dnstest.py --no-keepalive
+dnsgauge --no-keepalive
 
 # Custom test count and timeout
-python3 src/dnstest.py --domains 15 --timeout 3.0
+dnsgauge --domains 15 --timeout 3.0
 
 # Add custom servers
-python3 src/dnstest.py --udp 8.8.8.8 --doh https://dns.google/dns-query
+dnsgauge --udp 8.8.8.8 --doh https://dns.google/dns-query
 ```
 
 ## Setup & Development
@@ -73,11 +73,16 @@ python3 src/dnstest.py --udp 8.8.8.8 --doh https://dns.google/dns-query
 - Python 3.8+ (macOS, Linux, or Windows)
 - pip or conda
 
-### Install Dependencies
+### Method 1: Installing via Homebrew (Recommended)
+```bash
+brew tap themorgantown/dns-latency-cli
+brew install dnsgauge
+```
 
+### Method 2: Installing via pip
 ```bash
 # Install required packages
-pip install -r requirements.txt
+pip install .
 ```
 
 ### Files
@@ -108,7 +113,7 @@ optional arguments:
 ### Test 15 domains against default providers with 3-second timeout
 
 ```bash
-python3 src/dnstest.py --domains 15 --timeout 3.0
+dnsgauge --domains 15 --timeout 3.0
 ```
 
 Output:
@@ -126,19 +131,19 @@ Cloudflare    DoH    cloudflare-dns.com               45      20   68   100%    
 ### Test only DoH endpoints with custom timeout
 
 ```bash
-python3 src/dnstest.py -dohnly --timeout 5.0
+dnsgauge -dohnly --timeout 5.0
 ```
 
 ### Add a custom DNS server
 
 ```bash
-python3 src/dnstest.py --udp 1.0.0.1
+dnsgauge --udp 1.0.0.1
 ```
 
 ### Use a fixed random seed (reproducible results)
 
 ```bash
-python3 src/dnstest.py --seed 42
+dnsgauge --seed 42
 ```
 
 ## Customizing Default Servers
@@ -199,7 +204,7 @@ servers = build_servers(
 Run manual tests with small domain counts:
 
 ```bash
-python3 src/dnstest.py --domains 3 --seed 42 --timeout 1.0
+dnsgauge --domains 3 --seed 42 --timeout 1.0
 ```
 
 ## Troubleshooting
@@ -208,7 +213,11 @@ python3 src/dnstest.py --domains 3 --seed 42 --timeout 1.0
 
 Install dependencies:
 ```bash
-pip install -r requirements.txt
+pip install .
+```
+Then run:
+```bash
+dnsgauge
 ```
 
 

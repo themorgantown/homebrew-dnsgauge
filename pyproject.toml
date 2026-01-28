@@ -3,25 +3,22 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dns-latency-cli"
+name = "dnsgauge"
 version = "1.0.0"
-description = "DNS response tester (UDP + DoH) with live status and ETA"
-readme = "README.md"
-license = {text = "MIT"}
-requires-python = ">=3.8"
-dependencies = [
-    "httpx[http2]>=0.24.0",
-    "dnspython>=2.3.0",
+description = "DNS response tester (UDP + DoH) with live status + ETA"
+authors = [
+    {name = "themorgantown"}
 ]
+dependencies = [
+    "dnspython>=2.5.0",
+    "httpx[http2]>=0.27.0",
+]
+requires-python = ">=3.8"
+license = {text = "MIT"}
 
 [project.scripts]
-dnstest = "dnstest:main"
-
-[project.urls]
-Homepage = "https://github.com/themorgantown/DNS-Latency-CLI"
+dnsgauge = "dnsgauge:main"
 
 [tool.setuptools]
-py-modules = ["dnstest"]
-
-[tool.setuptools.package-dir]
-"" = "src"
+package-dir = {"" = "src"}
+py-modules = ["dnsgauge"]
