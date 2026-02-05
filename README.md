@@ -12,6 +12,28 @@ brew tap themorgantown/dnsgauge
 brew install dnsgauge
 ```
 
+### Linux (pipx, Recommended)
+```bash
+# 1. Install pipx (one-time)
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+
+# 2. Install from source
+git clone https://github.com/themorgantown/homebrew-dnsgauge.git
+cd homebrew-dnsgauge
+pipx install .
+```
+
+### Linux (venv)
+```bash
+# 1. Create a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 2. Install from source
+pip install .
+```
+
 ### pip (Manual)
 ```bash
 pip install .

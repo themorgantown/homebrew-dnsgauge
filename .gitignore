@@ -8,3 +8,7 @@ src/dnsgauge.egg-info/SOURCES.txt
 src/dnsgauge.egg-info/PKG-INFO
 *.tar.gz
 **/*.tar.gz
+temp.md
+.vscode/settings.json
+results_doh_warm.txt
+results_udp_mixed.txt
