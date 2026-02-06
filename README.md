@@ -50,6 +50,50 @@ pip install .
   - **Warm Mode**: Run multiple passes and ignore the first one to test cached performance.
   - **Comprehensive Mode**: Drill down into NXDOMAIN, SERVFAIL, and transport-layer details.
 
+## Why DNSgauge
+
+Many DNS benchmark tools focus on a single protocol, rely on basic averages, or provide limited visibility into failure modes. DNSgauge is built to give a more realistic, decision-ready view of resolver performance:
+
+- **UDP + DoH, side by side**: Compare classic DNS with modern DoH under the same workload.
+- **Tail-aware scoring**: We weight success rate, p95 latency, and jitter so “fast but flaky” resolvers don’t look good.
+- **Warm mode**: Optional multi-pass runs to observe cached vs. cold behavior.
+- **Comprehensive diagnostics**: Breakdowns for NXDOMAIN, SERVFAIL, HTTP errors, parsing errors, truncation, and TCP fallback.
+- **Practical defaults**: Curated providers and sensible query types so you can run it immediately.
+
+## Comparison to Other Tools
+| Feature       |                           DNSgauge                            |      Namebench      |      DNSPerf      | DNS Benchmark (GRC) |
+| :------------ | :-----------------------------------------------------------: | :----------------: | :---------------: | :-----------------: |
+| Protocols     |                           UDP + DoH                           |     UDP + TCP      |  UDP/TCP/DoH/DoT  | UDP + DoH/DoT (v2)  |
+| Metrics       |                Success, p50/p95, Jitter, Score                | Latency, Hijacking | QPS, Latency, RRT | Latency, Reliability |
+| Scoring       |                    Weighted score (0-100)                     |        None        |       None        |        None         |
+| Multi-pass    |                        Yes (Warm Mode)                        |         No         |        No         |         No          |
+| Failure modes | NXDOMAIN, SERVFAIL, HTTP errors, parsing errors, truncation, | NXDOMAIN Hijacking | Timeouts, RCODEs  | Reliability, DNSSEC |
+
+### Feature Comparison Map
+```mermaid
+mindmap
+  root((DNS Benchmarking Tools))
+    DNSgauge
+      Protocols: UDP + DoH
+      Success, p50/p95, Jitter, Score
+      Weighted Scoring
+      Warm Mode (Multi-pass)
+      Detailed Failure Modes
+    Namebench
+      Protocols: UDP + TCP
+      Latency, Hijacking
+      Legacy / Python 2
+    DNSPerf
+      Protocols: UDP/TCP/DoH/DoT
+      QPS, Latency, RRT
+      High Throughput
+    DNS Benchmark (GRC)
+      Protocols: UDP + DoH/DoT (v2)
+      Latency, Reliability
+      Windows focus
+```
+
+
 ## Usage
 
 ```bash
